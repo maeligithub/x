@@ -1,0 +1,83 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Cordova Device Ready Example</title>
+<script type="text/javascript" charset="utf-8" src="cordova-2.2.0.js"></script>
+<script type="text/javascript" charset="utf-8">
+
+function onLoad(){
+	document.addEventListener("deviceready", onDeviceReady, false);
+	}
+	
+function onDeviceReady(){
+	
+
+	//alert("Estamos listos!!!");
+	document.addEventListener("menubutton", onMenuButton, false);
+	document.addEventListener("offline", isOffline, false);	
+	document.addEventListener("online", isOnline, false);
+	<!--window.location="http://www.kmmx.mx";-->	
+	
+	var myDiv= document.getElementById("props");
+	
+	myDiv.innerHTML='Device Name:' + device.name + '<br/>'+ 'Device PhoneGap:'+ device.phonegap + '<br/>' + 'Device Platform:' + device.platform + '<br/>' + 'Device UUID: '+ device.uuid + '<br/>'+ 'Device Version:'+ device.version+ '<br/>';
+	
+	}
+function onMenuButton(){
+	alert("Haz presionado el boton menu!!!");
+	}	
+function isOffline(){
+	alert("No tienes conexion a internet!!!");
+	}
+function isOnline(){
+	alert("Yahoo estamos conectados a internet!!!");
+	}	
+function popup(){
+	alert("Hola mundo cruel!");
+	}	
+function ciclo(){
+	document.write("El ciclo ha comenzado:<br> ");
+	for (i=0; i<9; i++){
+		document.write("El contador i="+i);
+		document.write("<br>");
+		}
+		document.write("El ciclo ha terminado");
+	}
+	
+	function onConfirm(buttonIndex){
+		alert("Haz seleccionado el boton"+ buttonIndex);
+		if (buttonIndex==1){
+			alert("presiono 1");
+			}
+		}
+		
+		function showConfirm(){			
+		navigator.notification.confirm(
+		'Game Over!',
+		onConfirm,
+		'Game Over!',
+		'Restart, Exit'
+		);
+		
+		}
+	
+function playBeep (){
+	navigator.notification.beep(3);
+	}
+
+function vibrate (){
+	navigator.notification.vibrate(2000);
+	}							
+</script>		
+</head>
+
+<body onLoad="onLoad()">
+<div id="props"> Aqui</div>
+<input type="button" onClick="popup()" value="popup">
+<input type="button" onClick="ciclo()" value="ciclo">
+<input type="button" onClick="showConfirm()" value="showConfirm">
+<p><a href="#" onClick="playBeep(); return false;">Ejecutar Beep</a></p>
+<p><a href="#" onClick="vibrate(); return false;">Vibrate</a></p>
+</body>
+</html>
